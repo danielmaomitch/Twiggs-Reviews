@@ -1,0 +1,14 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 30vh;
+  justify-content: center;
+  margin-top: 10vh;
+}
+
+.card_grid {
+  display: flex;
+  align-content: center;
+  margin-bottom: 3rem;
+  margin-top: 2rem;
+}

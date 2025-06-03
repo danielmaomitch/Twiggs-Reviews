@@ -1,0 +1,24 @@
+.card_container {
+  width: 15rem;
+  border-radius: 0.7rem;
+  border: 3px solid;
+  display: flex;
+  flex-direction: column;
+}
+
+.card_img {
+  width: 14rem;
+  height: 14rem;
+  border-radius: 0.5rem;
+}
+
+.card_title {
+  margin: 0rem 5% 0px;
+  text-decoration: none;
+  font-size: 1.4rem;
+}
+
+.card_text {
+  font-size: 0.9rem;
+  margin: 0px 5% 2px;
+}

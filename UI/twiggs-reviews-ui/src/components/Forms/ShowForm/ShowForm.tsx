@@ -1,0 +1,119 @@
+import { Grid, TextField, Button } from "@mui/material";
+import { LocalizationProvider, DateField } from "@mui/x-date-pickers";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import React from "react";
+import useShowFormLogic from "./useShowFormLogic";
+import scss from "../ContentForm.module.scss";
+
+const ShowForm = () => {
+  const {
+    seasonError,
+    episodeError,
+    errorMsg,
+    date,
+    formData,
+    setDate,
+    handleFormChange,
+    handleSubmit,
+  } = useShowFormLogic();
+
+  return (
+    <div className={scss.container}>
+      <Grid container justifyContent="center">
+        <Grid size={{ xs: 12, sm: 8, md: 6 }}>
+          <form
+            onSubmit={handleSubmit}
+            style={{ maxWidth: 600, margin: "0 auto" }}
+          >
+            <Grid container spacing={3}>
+              <Grid size={{ xs: 12, sm: 6 }}>
+                <TextField
+                  required
+                  fullWidth
+                  label="Media Name"
+                  name="mediaName"
+                  value={formData.mediaName}
+                  onChange={handleFormChange}
+                />
+              </Grid>
+              <Grid size={{ xs: 12, sm: 6 }}>
+                <TextField
+                  required
+                  fullWidth
+                  disabled
+                  label="Media Type"
+                  name="mediaType"
+                  value={formData.mediaType}
+                  onChange={handleFormChange}
+                />
+              </Grid>
+              <Grid size={{ xs: 12 }}>
+                <TextField
+                  required
+                  fullWidth
+                  label="Genre(s)"
+                  name="genres"
+                  value={formData.genres}
+                  onChange={handleFormChange}
+                />
+              </Grid>
+              <Grid size={{ xs: 12 }}>
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <DateField
+                    required
+                    label="Last Watched"
+                    name="lastEnlightened"
+                    format="YYYY-MM-DD"
+                    value={date}
+                    onChange={(value) => setDate(value)}
+                  />
+                </LocalizationProvider>
+              </Grid>
+              <Grid size={{ xs: 12, sm: 4 }}>
+                <TextField
+                  label="Watched On"
+                  name="watchedOn"
+                  value={formData.watchedOn}
+                  onChange={handleFormChange}
+                />
+              </Grid>
+              <Grid size={{ xs: 4 }}>
+                <TextField
+                  required
+                  error={seasonError}
+                  label="Season"
+                  name="season"
+                  helperText={errorMsg}
+                  value={formData.season}
+                  onChange={handleFormChange}
+                />
+              </Grid>
+              <Grid size={{ xs: 4 }}>
+                <TextField
+                  required
+                  error={episodeError}
+                  label="Episode"
+                  name="episode"
+                  helperText={errorMsg}
+                  value={formData.episode}
+                  onChange={handleFormChange}
+                />
+              </Grid>
+              <Grid
+                container
+                size={{ xs: 12 }}
+                sx={{ marginTop: "2rem", justifyContent: "flex-end" }}
+              >
+                <Button type="submit" variant="contained" color="primary">
+                  Add Media
+                </Button>
+              </Grid>
+            </Grid>
+          </form>
+        </Grid>
+      </Grid>
+    </div>
+  );
+};
+
+export default ShowForm;
